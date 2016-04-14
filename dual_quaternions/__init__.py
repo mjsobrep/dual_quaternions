@@ -1,0 +1,1 @@
+from dual_quaternions.dual_quaternion import DualQuaternion

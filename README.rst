@@ -1,7 +1,13 @@
 dual_quaternions
 ================
 
-
+Some good resources:
+- http://www.xbdev.net/misc_demos/demos/dual_quaternions_beyond/paper.pdf
+- http://cs.gmu.edu/~jmlien/teaching/cs451/uploads/Main/dual-quaternion.pdf
+- http://www.ejpam.com/index.php/ejpam/article/viewFile/1173/204
+- http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/other/dualQuaternion/index.htm
+- https://www.cosc.canterbury.ac.nz/research/reports/HonsReps/2013/hons_1305.pdf
+- http://rain.aa.washington.edu/@api/deki/files/401/=Dual_q_landing_CDC12.pdf
 
 License:
 --------

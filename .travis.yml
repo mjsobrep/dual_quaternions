@@ -1,0 +1,19 @@
+language: python
+python:
+    - "2.6"
+    - "2.7"
+    - "3.2"
+    - "3.3"
+    - "3.4"
+    - "3.5"
+    - "3.5-dev" # 3.5 development branch
+    - "nightly" # currently points to 3.6-dev
+# command to install dependencies
+install:
+  - pip install .
+  - pip install pep8
+# command to run tests
+script:
+    - pep8 dual_quaternions/dual_quaternion.py
+    - pep8 tests/test_dual_quaternion.py
+    - python setup.py test

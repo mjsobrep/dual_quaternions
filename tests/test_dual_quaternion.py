@@ -45,16 +45,18 @@ class TestQuaternion(TestCase):
                            Quaternion.from_translation(
                                [val_list[7*n+4], val_list[7*n+5],
                                 val_list[7*n+6]])) for n in range(N//7)]
-        self.p = self.all[:N//2]
-        self.q = self.all[N//2:]
+        self.p = self.all[:N//len(self.all)]
+        self.q = self.all[N//len(self.all):]
 
-    def test_conjugate_1(self):
+    def test_conjugate_reverse(self):
         """(AC)*=C*A*"""
         for q in self.q:
             for p in self.p:
-                (q*p).conjugate().almost_equal(p.conjugate()*q.conjugate())
+                (q*p).conjugate_reverse().almost_equal(
+                    p.conjugate_reverse()*q.conjugate_reverse())
+                # print (str((q*p).conjugate()) + "\n" + str(p.conjugate()*q.conjugate()) + "\n\n")
 
-    def test_conjugate_2(self):
-        """AA*=(1,0):A=normalize(A')"""
+    def test_conjugate_transform(self):
         for q in self.all:
-            print (str(q.conjugate())+"\n"+str(q)+"\n"+str(q*q.conjugate())+"\n\n")
+            q.conjugate_transform()
+

@@ -93,8 +93,8 @@ class DualQuaternion(object):
         Returns:
             The caller, normalized
         """
-        norm = self.real.norm()
-        return Quaternion(self.real/norm, self.dual/norm)
+        norm = self.real.dot(self.real)
+        return DualQuaternion(self.real/norm, self.dual/norm)
 
     def __add__(self, other):
         """Add the two dual quaternions together. This is simple addition of the
@@ -108,13 +108,47 @@ class DualQuaternion(object):
         """
         return DualQuaternion(self.real + other.real, self.dual + other.dual)
 
-    def conjugate(self):
+    def conjugate_reverse(self):
         """ Return the conjugate of the caller
+
+        Multiple definitions possible:
+        ------------------------------
+        Given a dual quaternion Q, the conjugate of Q can be defined as:
+            - DualQuaternion(Q.real.conjugate(), Q.dual.conjugate())
+                - use to reverse order of multiplication
+            - DualQuaternion(Q.real, -Q.dual)
+            - DualQuaternion(Q.real.conjugate(), -Q.dual.conjugate())
+                - use to translate points with sandwidch multiplication
+
+        Using type 3 from:
+        http://what-when-how.com/advanced-methods-in-computer-graphics/
+        quaternions-advanced-methods-in-computer-graphics-part-6/
 
         Returns:
             The conjugate of the caller
         """
         return DualQuaternion(self.real.conjugate(), self.dual.conjugate())
+
+    def conjugate_transform(self):
+        """ Return the conjugate of the caller
+
+        Multiple definitions possible:
+        ------------------------------
+        Given a dual quaternion Q, the conjugate of Q can be defined as:
+            - DualQuaternion(Q.real.conjugate(), Q.dual.conjugate())
+                - use to reverse order of multiplication
+            - DualQuaternion(Q.real, -Q.dual)
+            - DualQuaternion(Q.real.conjugate(), -Q.dual.conjugate())
+                - use to translate points with sandwidch multiplication
+
+        Using type 3 from:
+        http://what-when-how.com/advanced-methods-in-computer-graphics/
+        quaternions-advanced-methods-in-computer-graphics-part-6/
+
+        Returns:
+            The conjugate of the caller
+        """
+        return DualQuaternion(self.real.conjugate(), -self.dual.conjugate())
 
     def get_translation(self):
         """Return the translation component of the dual quaternion

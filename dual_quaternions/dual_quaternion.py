@@ -28,6 +28,7 @@ from __future__ import division
 import math
 from quaternions import Quaternion
 
+
 class DualQuaternion(object):
     """
     A class to handle dual quaternions. These are used to express rotation and
@@ -53,8 +54,8 @@ class DualQuaternion(object):
         self.real = real.unit()
 
     def dot(self, other):
-        """ Take the dot product of two dual quaternions. This is simply the dot
-        product of the two real components
+        """ Take the dot product of two dual quaternions. This is simply the
+        dot product of the two real components
 
         Args:
             other (DualQuaternion): The other dual quaternion with which to
@@ -76,19 +77,19 @@ class DualQuaternion(object):
         Returns:
             The resulting dual quaternion
         """
-        if isinstance(other, (float,int)):
+        if isinstance(other, (float, int)):
             return DualQuaternion(self.real*other, self.dual*other)
-        elif isinstance(other,DualQuaternion):
+        elif isinstance(other, DualQuaternion):
             return DualQuaternion(self.real*other.real,
                                   self.dual*other.real + self.real*other.dual)
-            #Really not sure that the order here is right
+            # Really not sure that the order here is right
         else:
             raise TypeError("Only supports Dual Quaternion, float, and int")
 
     def normalize(self):
         """Normalize the quaternion. This will ensure that the rotational
-        portion of the quaternion has a norm of one and will scale the dual part
-        by the same amount required to scale the real part.
+        portion of the quaternion has a norm of one and will scale the dual
+        part by the same amount required to scale the real part.
 
         Returns:
             The caller, normalized
@@ -97,8 +98,8 @@ class DualQuaternion(object):
         return DualQuaternion(self.real/norm, self.dual/norm)
 
     def __add__(self, other):
-        """Add the two dual quaternions together. This is simple addition of the
-        real parts and dual parts seperately.
+        """Add the two dual quaternions together. This is simple addition of
+        the real parts and dual parts seperately.
 
         Args:
             other (DualQuaternion): The dual quaternion to add the caller to

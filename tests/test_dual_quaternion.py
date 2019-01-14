@@ -54,9 +54,9 @@ class TestQuaternion(TestCase):
             for p in self.p:
                 (q*p).conjugate_reverse().almost_equal(
                     p.conjugate_reverse()*q.conjugate_reverse())
-                # print (str((q*p).conjugate()) + "\n" + str(p.conjugate()*q.conjugate()) + "\n\n")
+                # print (str((q*p).conjugate()) + "\n" + str(p.conjugate() *
+                # q.conjugate()) + "\n\n")
 
     def test_conjugate_transform(self):
         for q in self.all:
             q.conjugate_transform()
-

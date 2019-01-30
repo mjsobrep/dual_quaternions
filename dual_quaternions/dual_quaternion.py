@@ -168,15 +168,16 @@ class DualQuaternion(object):
             The homogeneous transformation matrix as a list of 4 lists of 4
             members each.
         """
-        transormation_matrix = [[0]*4]*4
+        transformation_matrix = [[0 for _ in range(4)] for _ in range(4)]
         rot_matx = self.real.get_rotation_matrix()
         translation = self.get_translation()
         for i in range(3):
-            transormation_matrix[i][3] = translation[i]
+            transformation_matrix[i][3] = translation[i]
             for j in range(3):
-                transormation_matrix[i][j] = rot_matx[i][j]
+                transformation_matrix[i][j] = rot_matx[i][j]
 
-        transormation_matrix[3][3] = 1
+        transformation_matrix[3][3] = 1
+        return transformation_matrix
 
     def almost_equal(self, other, delta=.00000001):
         """Determines whether a dual quaternion is approximately equal to
